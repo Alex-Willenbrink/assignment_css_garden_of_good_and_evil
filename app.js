@@ -12,7 +12,7 @@ app.use(cookieParser());
 
 app.get("/", (req, res) => {
   res.end("Hello Sir");
-})
+});
 
 app.get("/:id", (req, res) => {
   const id = req.params.id;
@@ -22,10 +22,9 @@ app.get("/:id", (req, res) => {
 
   res.cookie("cookieArray", cookieArray, { maxAge: 90000, httpOnly: false });
   console.log(req.cookies.cookieArray);
-  res.end();
-})
-
+  res.send("");
+});
 
 app.listen(3000, "0.0.0.0", (req, res) => {
- console.log("listening on port 3000");
- });
+  console.log("listening on port 3000");
+});
