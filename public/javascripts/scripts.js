@@ -2,25 +2,20 @@ console.log("Say this plz");
 
 let notParsed = document.cookie;
 
-console.log(notParsed);
 let parsed = decodeURIComponent(document.cookie);
-console.log(parsed);
-
 
 parsed = JSON.parse(parsed.split("=")[1].substring(2));
-console.log(parsed);
 
+let { goodOrEvil, favFood, favColor, sliderVal } = parsed;
 
-let { goodOrEvil, favFood, favColor } = parsed;
-
+let fontChanger = () => {
+  let tags = ["p", "h2", "h1", "span", "label"];
+};
 
 // default background is white
 let color = [255, 255, 255];
 
 $(document).ready(() => {
-  let insanityLevel = $("#slider").val();
-  console.log(insanityLevel);
-
   if (favColor) {
     switch (favColor) {
       case "blue":
@@ -50,30 +45,51 @@ $(document).ready(() => {
   // Likes and Dislikes first
   let likes = [];
   let dislikes = [];
+  let biographyEvil = `testevil`;
+  let biographyGood = `test`;
 
-  if(favColor) {
+  let goodResume = [
+    "social worker",
+    "elementary school teacher",
+    "firefighter"
+  ];
+  let badResume = ["executioner", "hired goon", "mercenary"];
+
+  if (favColor) {
     likes.push(favColor);
   }
-  if(favFood) {
+  if (favFood) {
     likes.push(favFood);
   }
-  if(goodOrEvil === "evil") {
+  if (goodOrEvil === "evil") {
     likes.push("evil");
     dislikes.push("good");
+    $(".biography").text(biographyEvil);
+    badResume.forEach(job => {
+      $(".resume").append(`<li>${job}</li>`);
+    });
   } else {
     likes.push("good");
     dislikes.push("evil");
+    $(".biography").text(biographyGood);
+    goodResume.forEach(job => {
+      $(".resume").append(`<li>${job}</li>`);
+    });
   }
 
-  if(insanityLevel > 5) {
-    likes.push("chaos")
-    dislike.push("order");
+  if (parseInt(sliderVal) > 5) {
+    likes.push("chaos");
+    dislikes.push("order");
   } else {
-    likes.push("order")
-    dislike.push("chaos");
+    likes.push("order");
+    dislikes.push("chaos");
   }
 
-  $(".likes").append("<")
+  likes.forEach(like => {
+    $(".likes").append(`<li>${like}</li>`);
+  });
 
-
+  dislikes.forEach(dislike => {
+    $(".dislikes").append(`<li>${dislike}</li>`);
+  });
 });
