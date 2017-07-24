@@ -16,14 +16,13 @@ app.get("/", (req, res) => {
 
 app.post("/", (req, res) => {
   const cookieObj = req.cookies.cookieObj || {};
-  for(let key in req.body) {
+  for (let key in req.body) {
     cookieObj[key] = req.body[key];
   }
 
-  res.cookie("cookieObj", cookieObj, { maxAge: 90000, httpOnly: false });
+  res.cookie("cookieObj", cookieObj, { httpOnly: false });
   res.render("index");
-})
-
+});
 
 // app.get("/:key/:value", (req, res) => {
 //   const key = req.params.key;
