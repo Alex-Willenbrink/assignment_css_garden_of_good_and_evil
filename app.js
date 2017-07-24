@@ -24,20 +24,6 @@ app.post("/", (req, res) => {
   res.render("index");
 });
 
-// app.get("/:key/:value", (req, res) => {
-//   const key = req.params.key;
-//   const value = req.params.value;
-//
-//   const cookieObj = req.cookies.cookieObj || {};
-//
-//   cookieObj[key] = value;
-//
-//   res.cookie("cookieObj", cookieObj, { maxAge: 90000, httpOnly: false });
-//   console.log(req.cookies.cookieObj);
-//
-//   res.render("index");
-// });
-
 app.listen(3000, "0.0.0.0", (req, res) => {
   console.log("listening on port 3000");
 });
