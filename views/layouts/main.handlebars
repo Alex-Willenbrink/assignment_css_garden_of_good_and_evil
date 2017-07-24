@@ -9,8 +9,13 @@ integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 crossorigin="anonymous"></script>
 </head>
   <body>
-    cookie test
     {{{body}}}
-    <script src='script.js'></script>
+    <script>
+      console.log("Say this plz");
+      let notParsed = document.cookie;
+      let parsed = decodeURIComponent(document.cookie);
+      console.log(notParsed);
+      console.log(parsed);
+    </script>
   </body>
 </html>

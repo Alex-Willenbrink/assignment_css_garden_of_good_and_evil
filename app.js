@@ -11,19 +11,33 @@ app.use(express.static(`${__dirname}/public`));
 app.use(cookieParser());
 
 app.get("/", (req, res) => {
-  res.end("Hello Sir");
+  res.render("index");
 });
 
-app.get("/:id", (req, res) => {
-  const id = req.params.id;
-  const cookieArray = req.cookies.cookieArray || [];
+app.post("/", (req, res) => {
+  const cookieObj = req.cookies.cookieObj || {};
+  for(let key in req.body) {
+    cookieObj[key] = req.body[key];
+  }
 
-  cookieArray.push(id);
+  res.cookie("cookieObj", cookieObj, { maxAge: 90000, httpOnly: false });
+  res.render("index");
+})
 
-  res.cookie("cookieArray", cookieArray, { maxAge: 90000, httpOnly: false });
-  console.log(req.cookies.cookieArray);
-  res.send("");
-});
+
+// app.get("/:key/:value", (req, res) => {
+//   const key = req.params.key;
+//   const value = req.params.value;
+//
+//   const cookieObj = req.cookies.cookieObj || {};
+//
+//   cookieObj[key] = value;
+//
+//   res.cookie("cookieObj", cookieObj, { maxAge: 90000, httpOnly: false });
+//   console.log(req.cookies.cookieObj);
+//
+//   res.render("index");
+// });
 
 app.listen(3000, "0.0.0.0", (req, res) => {
   console.log("listening on port 3000");
