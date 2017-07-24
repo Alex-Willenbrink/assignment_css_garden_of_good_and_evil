@@ -2,13 +2,17 @@ console.log("Say this plz");
 
 
 let notParsed = document.cookie;
+
+console.log(notParsed);
 let parsed = decodeURIComponent(document.cookie);
+console.log(parsed);
 
 if(parsed) {
-  
+
 }
 
 parsed = JSON.parse(parsed.split("=")[1].substring(2));
+console.log(parsed);
 
 // { goodOrEvil, favFood, favColor } = parsed;
 // let favColor = "blue";
