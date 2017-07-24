@@ -10,14 +10,57 @@
           <label><input type="radio" name="goodOrEvil" value="evil" />Evil</label>
         </div>
         <label>Favorite Food:<input name="favFood" type="text" class="form-control" /></label>
+
+        <!-- <div class="dropdown">
+          <select class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" href="#">
+            <span id="selected">FavoriteColor</span><span class="caret"></span>
+          </select>
+          <ul class="dropdown-menu">
+            <li><a href="#">blue</a></li>
+            <li><a href="#">red</a></li>
+            <li><a href="#">green</a></li>
+          </ul>
+          </div> -->
+
+          <div class="radio">
+            <label><input type="radio" name="favColor" value="green" />Green</label>
+          </div>
+          <div class="radio">
+            <label><input type="radio" name="favColor" value="red" />Red</label>
+          </div>
+          <div class="radio">
+            <label><input type="radio" name="favColor" value="blue" />Blue</label>
+          </div>
         <div>
-          <input type="range" min="-10" max="10">
+          <input name="sliderVal" value="0" id="slider" type="range" min="0" max="10">
         </div>
-
-
     <button type="submit">Submit Properties</button>
-
     </form>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>Likes and Dislikes</h2>
+        <ul class="likes">
+        </ul>
+        <ul class="dislikes">
+        </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>Biography</h2>
+        <p class="biography"></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>Resume</h2>
+      <p class="resume"></p>
+    </div>
+  </div>
+
 </section>
