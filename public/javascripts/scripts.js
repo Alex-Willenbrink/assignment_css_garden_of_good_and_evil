@@ -1,21 +1,29 @@
-console.log("Say this plz");
+function parseCookie(cookie) {
+  let parsed = decodeURIComponent(document.cookie);
+  return JSON.parse(parsed.split("=")[1].substring(2));
+}
 
-let notParsed = document.cookie;
-
-let parsed = decodeURIComponent(document.cookie);
-
-parsed = JSON.parse(parsed.split("=")[1].substring(2));
+let parsed = parseCookie(document.cookie);
 
 let { goodOrEvil, favFood, favColor, sliderVal } = parsed;
+let insanityLevel = parseInt(sliderVal);
 
-let fontChanger = () => {
+let fontChanger = (insanityLevel) => {
   let tags = ["p", "h2", "h1", "span", "label"];
+  let fontSize;
+
+  tags.forEach((tag) => {
+    fontSize = parseInt($(tag).css("font-size"));
+
+    let min = fontSize / (insanityLevel / 2);
+    let max = fontSize * (insanityLevel / 2);
+
+    $(tag).css("font-size", Math.floor(Math.random() * ((max - min - 1) + min)));
+  })
 };
 
-// default background is white
-let color = [255, 255, 255];
-
-$(document).ready(() => {
+function findColor(favColor, goodOrEvil) {
+  let color = [255, 255, 255];
   if (favColor) {
     switch (favColor) {
       case "blue":
@@ -41,6 +49,10 @@ $(document).ready(() => {
     }
   }
   $("body").css("background", `rgb(${color})`);
+}
+
+$(document).ready(() => {
+  findColor(favColor, goodOrEvil);
 
   // Likes and Dislikes first
   let likes = [];
@@ -92,4 +104,6 @@ $(document).ready(() => {
   dislikes.forEach(dislike => {
     $(".dislikes").append(`<li>${dislike}</li>`);
   });
+
+  fontChanger(insanityLevel);
 });
